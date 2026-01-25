@@ -1,0 +1,195 @@
+.project-header {
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+.project-hero {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.project-hero img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.project-hero video {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    display: block;
+}
+
+.project-details {
+    margin-bottom: 50px;
+}
+
+.project-meta h5 {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.meta-info {
+    font-size: 0.95rem;
+}
+
+.meta-info strong {
+    display: block;
+    color: var(--secondary-color);
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+
+.meta-info p {
+    margin-bottom: 0;
+    color: var(--text-color);
+    white-space: pre-line;
+}
+
+.project-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.project-gallery {
+    margin-bottom: 50px;
+}
+
+/* Updated Gallery Item Styles to match Portfolio Snap Style */
+.gallery-item {
+    margin-bottom: 30px;
+    position: relative;
+    background: var(--secondary-color);
+    padding: 6px;
+    border: 1px solid var(--secondary-color);
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.25);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 0; /* Changed to match portfolio style usually square/sharp or consistent */
+    transition: transform 0.3s ease;
+    object-position: top;
+    user-select: none;
+    -webkit-user-select: none;
+    display: block; /* Removes bottom space */
+}
+
+/* Overlay Content */
+.gallery-item .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--overlay-color); /* Ensure this variable exists, likely from global styles */
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: 0.3s ease;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+.gallery-item:hover .content {
+    height: calc(100% - 30px);
+    width: calc(100% - 30px);
+    opacity: 1;
+}
+
+.gallery-item .content p {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+}
+
+/* End Gallery Item Styles */
+
+.back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid var(--text-color);
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+
+/* Prevent image dragging globally if needed, but specifically for gallery items */
+img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.modal-backdrop.show {
+    opacity: 0.9 !important;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+}
+
+.modal-content {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.modal-header {
+    border-bottom: none !important;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+    background-color: white; /* Make close button more visible */
+    opacity: 1;
+}
+
+.modal-body {
+    background-color: transparent !important;
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-color) var(--bg-color);
+}
+
+.modal-body::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background-color: var(--text-color);
+    border-radius: 5px;
+    border: 2px solid var(--bg-color);
+}
+
+.modal-dialog {
+    max-width: 95vw !important;
+}

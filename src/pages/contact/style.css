@@ -43,3 +43,8 @@ button.btn.ac_btn:hover {
         transform: translateX(100%);
     }
 }
+/* Ensure the page is scrollable and has space at the bottom */
+.sec_sp {
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+}

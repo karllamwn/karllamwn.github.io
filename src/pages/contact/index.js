@@ -43,6 +43,9 @@ export const ContactUs = () => {
             alertmessage: "SUCCESS! ,Thankyou for your messege",
             variant: "success",
             show: true,
+            email: "",
+            name: "",
+            message: "",
           });
         },
         (error) => {
@@ -78,7 +81,7 @@ export const ContactUs = () => {
             <hr className="t_border my-4 ml-0 text-left" />
           </Col>
         </Row>
-        <Row className="sec_sp">
+        <Row className="sec_sp" style={{ paddingBottom: "100px" }}>
           <Col lg="12">
             <Alert
               //show={formData.show}

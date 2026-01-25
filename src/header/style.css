@@ -27,7 +27,7 @@
     border: unset;
     background: var(--primary-color);
     font-size: 1.25rem;
-    font-family: Marcellus;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: var(--text-color-2);
     line-height: 2;
     height: 50px;
@@ -93,10 +93,12 @@
     top: 0;
     width: 100%;
     visibility: hidden;
+    transition: visibility 0s 0.5s;
 }
 
 .menu__opend {
     visibility: visible !important;
+    transition: visibility 0s 0s;
 }
 
 .main__menu_ul,
@@ -141,7 +143,7 @@
     background-color: var(--primary-color);
     will-change: transform;
     transform: translateY(-100%);
-    transition: .5s ease all;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .menu__opend .bg__menu {
@@ -195,13 +197,23 @@
 
 .menu_footer {
     bottom: 0;
-    font-family: Marcellus;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     background: var(--primary-color);
 }
 
-.menu_footer a {
+.time-display {
+    padding: 0;
+    margin: 0;
+    border: unset;
+    background: var(--primary-color);
+    font-size: 1rem;
+    font-family: monospace;
     color: var(--text-color-2);
-    margin-right: 10px;
-    text-decoration: none;
+    line-height: 50px;
+    height: 50px;
+    font-weight: 600;
+    z-index: 1000;
+    width: 100px;
+    text-align: center;
 }

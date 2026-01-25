@@ -11,10 +11,20 @@ import AnimatedCursor  from "../hooks/AnimatedCursor";
 import "./App.css";
 
 function _ScrollToTop(props) {
-  const { pathname } = useLocation();
+  const { pathname, hash, key } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (hash === '') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 0);
+    }
+  }, [pathname, hash, key]);
   return props.children;
 }
 const ScrollToTop = withRouter(_ScrollToTop);
