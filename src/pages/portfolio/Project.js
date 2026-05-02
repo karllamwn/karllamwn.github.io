@@ -131,7 +131,7 @@ export const Project = () => {
       <main className="sheet project-sheet">
         <SectionHead id="P" label={project.title} />
 
-        {project.subtitle && (
+        {project.subtitle && project.subtitle.toLowerCase() !== "competition" && (
           <p className="project-subtitle" style={{ whiteSpace: "pre-line" }}>{project.subtitle}</p>
         )}
 
