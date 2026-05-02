@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./style.css";
 import {
   dataabout,
@@ -7,17 +7,63 @@ import {
 
 // Renders items as flex children with leading " · " separators. Flex layout
 // prevents adjacent items from merging on wrap, and justify-content:flex-end
-// right-aligns each line.
-const SepList = ({ items }) => (
-  <span className="value-list">
-    {items.map((item, i) => (
-      <span key={i} className="value-item">
-        {i > 0 && <span className="value-sep" aria-hidden>{" · "}</span>}
-        {item}
-      </span>
-    ))}
-  </span>
-);
+// right-aligns each line. Pass "$break" as an item to insert a mobile-only
+// flex break (forces a line break on small viewports). After layout, JS
+// marks any item whose top differs from the previous one as .line-start so
+// its leading separator can be hidden on mobile.
+const SepList = ({ items }) => {
+  const containerRef = useRef(null);
+  useEffect(() => {
+    const root = containerRef.current;
+    if (!root) return;
+    let scheduled = 0;
+    const mark = () => {
+      const itemEls = Array.from(root.querySelectorAll(".value-item"));
+      itemEls.forEach((el) => el.classList.remove("line-start"));
+      void root.offsetHeight;
+      for (let i = 1; i < itemEls.length; i++) {
+        const prev = itemEls[i - 1].getBoundingClientRect().top;
+        const cur = itemEls[i].getBoundingClientRect().top;
+        if (cur > prev + 1) itemEls[i].classList.add("line-start");
+      }
+    };
+    const schedule = () => {
+      if (scheduled) return;
+      scheduled = requestAnimationFrame(() => {
+        scheduled = 0;
+        mark();
+      });
+    };
+    schedule();
+    window.addEventListener("resize", schedule);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(schedule);
+    }
+    return () => {
+      if (scheduled) cancelAnimationFrame(scheduled);
+      window.removeEventListener("resize", schedule);
+    };
+  }, [items]);
+  let isFirstAfterBreak = false;
+  return (
+    <span className="value-list" ref={containerRef}>
+      {items.map((item, i) => {
+        if (item === "$break") {
+          isFirstAfterBreak = true;
+          return <span key={i} className="value-break-mobile" aria-hidden />;
+        }
+        const showLeadingSep = i > 0 && !isFirstAfterBreak;
+        isFirstAfterBreak = false;
+        return (
+          <span key={i} className="value-item">
+            {showLeadingSep && <span className="value-sep" aria-hidden>{" · "}</span>}
+            {item}
+          </span>
+        );
+      })}
+    </span>
+  );
+};
 
 const LeaderRow = ({ label, value, href }) => (
   <div className="leader-row">
@@ -48,7 +94,7 @@ const StarDivider = () => (
 );
 
 const primarySkills = ["AI Workflow", "Rhino", "Grasshopper", "Revit", "Adobe Suite"];
-const secondarySkills = ["AutoCAD", "SketchUp", "Enscape", "V‑ray", "Premiere Pro"];
+const secondarySkills = ["AutoCAD", "SketchUp", "Enscape", "$break", "V‑ray", "Premiere Pro"];
 
 const experienceFirmsList = worktimeline
   .map((w) => w.where.replace(/\s*\([^)]*\)\s*$/, "").trim())
