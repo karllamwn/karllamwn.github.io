@@ -234,7 +234,7 @@ const projects = [
     {
         id: "concept-c",
         title: "Concept C",
-        subtitle: "AI-Powered\nCarbon Evaluation Platform",
+        subtitle: "AI-Powered Carbon Evaluation Platform",
         date: "2025",
         time: "Sep. 2025 - Dec. 2025",
         projectType: "Architectural Workflow Prototype",

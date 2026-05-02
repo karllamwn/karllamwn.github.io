@@ -206,12 +206,17 @@ p:last-child {
     color: var(--ink);
 }
 
-/* CJK characters: render in light Hina Mincho regardless of parent weight */
+/* CJK characters: render in light Hina Mincho regardless of parent weight,
+   slightly smaller so the optical size matches the surrounding Latin title. */
 .cjk {
     font-family: "Hina Mincho", "Klee One", serif;
     font-weight: 400;
-    letter-spacing: 0;
-    margin-right: 0.15em;
+    font-size: 0.85em;
+    letter-spacing: 0.05em;
+    margin-right: -0.4em;
+    vertical-align: baseline;
+    font-synthesis: none;
+    -webkit-font-synthesis: none;
 }
 
 /* SepList: each item is a flex child with a leading " · ". Flex (instead
@@ -285,7 +290,8 @@ p:last-child {
 .leader-row .label {
     color: var(--ink);
     flex-shrink: 0;
-    font-weight: 700;
+    font-family: "IBM Plex Mono", "Share Tech Mono", "Courier New", monospace;
+    font-weight: 600;
 }
 
 .leader-row .dots {
