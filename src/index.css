@@ -7,8 +7,8 @@
     --rule: rgba(26, 26, 26, 0.18);
     --rule-faint: rgba(26, 26, 26, 0.08);
 
-    --font-display: "Doto", "Hina Mincho", "Klee One", "VT323", "Courier New", monospace;
-    --font-mono: "Share Tech Mono", "Hina Mincho", "Klee One", "Courier New", monospace;
+    --font-display: "Doto", "Hina Mincho", "Courier New", monospace;
+    --font-mono: "IBM Plex Mono", "Hina Mincho", "Courier New", monospace;
 
     --col-narrow: 640px;
     --col-wide: 880px;
