@@ -17,7 +17,7 @@ const introdata = {
 
 const dataabout = {
     title: "A bit about myself",
-    aboutme: "Educated in the United Kingdom and with professional experience in Hong Kong, I am currently a 3rd-year M.Arch student at UBC SALA and a Teaching Assistant in the BDes program. My academic and professional background has strengthened my ability to evaluate design work, understand visual communication, and interpret ideas expressed through drawings, models, and written reflections. Through studio practice and teaching, I have developed a careful and attentive approach to understanding design intentions and assessing a wide range of representational skills.",
+    aboutme: "Master of Architecture graduate from UBC SALA (2026), with 3 years of practice experience in Hong Kong across Aedas, ALKF+, and Atelier Pacific, working on large-scale retail, healthcare, and alteration-and-addition projects. UK-trained at Newcastle (BA in Architecture and Urban Planning), bringing a cross-cultural perspective shaped by Asia and North America. Currently focused on AI-augmented design workflows and computational tools, combining commercial delivery experience with a careful, collaborative approach to early-stage design.",
 };
 const education = [    {
         title: "Master of Architecture",
@@ -98,10 +98,31 @@ const services = [{
     },
 ];
 
-const dataportfolio = [    {
+const dataportfolio = [
+    {
+        img: "/image/Who Design/TopImage.jpg",
+        description: "Who Design (2026)",
+        link: "/portfolio/who-design",
+    },
+    {
+        img: "/image/Soak Up the Atmosphere/Thumbnail.jpg",
+        description: "Soak Up the Atmosphere (2026)",
+        link: "/portfolio/soak-up-the-atmosphere",
+    },
+    {
         img: "/image/Concept C/ConceptC_logo_new.jpg",
         description: "Concept C (2025)",
         link: "/portfolio/concept-c",
+    },
+    {
+        img: "/image/Cork/thumbnail.jpg",
+        description: "The Block (2025)",
+        link: "/portfolio/the-block",
+    },
+    {
+        img: "/image/Museum of Emotion/Thumbnail.jpg",
+        description: "Museum of Emotion (2025)",
+        link: "/portfolio/museum-of-emotion",
     },
     {
         img: "/image/Cocoon/Thumbnail.jpg",
@@ -114,29 +135,9 @@ const dataportfolio = [    {
         link: "/portfolio/lungomare-strip",
     },
     {
-        img: "/image/Megabox/Thumbnail.jpg",
-        description: "Megabox (2023)",
-        link: "/portfolio/megabox",
-    },
-    {
-        img: "/image/Cork/thumbnail.jpg",
-        description: "The Block (2025)",
-        link: "/portfolio/the-block",
-    },
-    {
-        img: "/image/Laundromat/Thumbnail.jpg",
-        description: "The Laundromat (2023)",
-        link: "/portfolio/the-laundromat",
-    },
-    {
         img: "/image/Lighting Park/project_thumbnail.jpg",
         description: "Lighting Park (2024)",
         link: "/portfolio/lighting-park",
-    },
-    {
-        img: "/image/Langham Place/Thumbnail.jpg",
-        description: "Langham Place (2022)",
-        link: "/portfolio/langham-place",
     },
     {
         img: "/image/Spine/Thumbnail.jpg",
@@ -144,19 +145,29 @@ const dataportfolio = [    {
         link: "/portfolio/the-spine",
     },
     {
-        img: "/image/Museum of Emotion/Thumbnail.jpg",
-        description: "Museum of Emotion (2025)",
-        link: "/portfolio/museum-of-emotion",
+        img: "/image/Megabox/Thumbnail.jpg",
+        description: "Megabox (2023)",
+        link: "/portfolio/megabox",
+    },
+    {
+        img: "/image/Laundromat/Thumbnail.jpg",
+        description: "The Laundromat (2023)",
+        link: "/portfolio/the-laundromat",
+    },
+    {
+        img: "/image/Langham Place/Thumbnail.jpg",
+        description: "Langham Place (2022)",
+        link: "/portfolio/langham-place",
+    },
+    {
+        img: "/image/HASSC/Thumbnail.jpg",
+        description: "HASSC (2022)",
+        link: "/portfolio/hassc",
     },
     {
         img: "/image/Ideal/Thumbnail.jpg",
         description: "The Ideal (2019)",
         link: "/portfolio/the-ideal",
-    },
-    {
-        img: "/image/HASSC/Thumbnail.jpg",
-        description: "Hospital Authority Supporting Services Centre (2022)",
-        link: "/portfolio/hassc",
     },
     {
         img: "/image/Radication/Thumbnail.jpg",
@@ -167,14 +178,68 @@ const dataportfolio = [    {
 
 const projects = [
     {
+        id: "who-design",
+        title: "Who Design",
+        subtitle: "Multi-Agent AI for Schematic Design Negotiation",
+        date: "2026",
+        time: "Sep. 2025 - Apr. 2026",
+        projectType: "Master's Thesis (Graduating Project)",
+        location: "Vancouver, Canada",
+        workType: "Individual Work\nPart 1 Mentor: Matthew Soules\nPart 2 Supervisor: Xun Liu",
+        description: "Architecture is not the work of a single mind. Every building emerges from invisible negotiations between structure and cost, daylight and form, code and program. Yet the computational tools of the past two decades have treated design as a single body optimizing for a brief, collapsing this multiplicity into one voice.\n\nThis thesis explores the paradigm of multi-agent negotiation. Using artificial intelligences to represent the disciplines that surround the architect, deliberate, disagree, and resolve the parameters of a building round by round. Through ArchSim, a generative design collaborator grounded in real engineering data, this project proposes a new workflow for schematic design in order to make the invisible negotiation between architects, consultants, and machines visible, transparent, and auditable.",
+        video: "/videos/who-design-demo.mp4",
+        img: "/image/Who Design/TopImage.jpg",
+        images: [
+            { img: "/image/Who Design/01_Choices.jpg", caption: "" },
+            { img: "/image/Who Design/05_DataGrounding.png", caption: "" },
+            { img: "/image/Who Design/03_SystemOverview.png", caption: "" },
+            { img: "/image/Who Design/04_MultiAgent.png", caption: "" },
+            { img: "/image/Who Design/02_Workflow.png", caption: "" },
+            { img: "/image/Who Design/06_NegotiationRound.png", caption: "" },
+            { img: "/image/Who Design/08_WorkspaceUI.png", caption: "" },
+            { img: "/image/Who Design/09_Surveillance.png", caption: "" },
+            { img: "/image/Who Design/07_RealTimeSimulation.jpg", caption: "" },
+            { img: "/image/Who Design/10_DesignOutcome.jpg", caption: "" },
+            { img: "/image/Who Design/11_EvolutionChart.jpg", caption: "" },
+            { img: "/image/Who Design/12_RationaleLog.jpg", caption: "" },
+        ],
+    },
+    {
+        id: "soak-up-the-atmosphere",
+        title: "Soak Up the Atmosphere",
+        subtitle: "Competition",
+        date: "2026",
+        time: "Mar. 2026",
+        projectType: "Architectural Competition",
+        location: "Kitsilano Beach, Vancouver, Canada",
+        workType: "Collaborate with Amo Chou and Edriane Maglinte",
+        description: "Located at Kitsilano Pool in Vancouver—the longest swimming pool in North America—this competition entry reimagines a site at risk of becoming a 'non-place' (Marc Augé) when the beach is closed due to E. coli advisories and the pool shutters outside summer months. Responding to the exclusionary history of swimming culture, often bounded by ticketed gates that can be bypassed with wealth, the project asks: what if we deconstruct the ways we hold, contain, and envision water itself? The installation activates at dusk, synchronized with the automated street lights along Kitsilano Beach, and indicates the varying abundance of rain in the city as the source of its steam. Glass wall panels chilled by the ocean breeze democratize access to water in the form of vapour and harness the condensation process to form water droplets onto the beach. The street lights become the skeletal structure of the steam, an architecture the public swims through at and after dark. Acting as a liminal space between the commercial strip at Cornwall Avenue and the beach, Soak Up the Atmosphere revives a collective memory amidst the threats that prevent a thriving nightlife culture in Vancouver—creating an alternative to conventional swimming where the blurring of sightlines under low-light conditions heightens the tactile experience of the ground material and the lightness of water itself.",
+        video: "",
+        img: "/image/Soak Up the Atmosphere/TopImage.jpg",
+        images: [
+            {
+                img: "/image/Soak Up the Atmosphere/Misty_Per.jpg",
+                caption: "",
+            },
+            {
+                img: "/image/Soak Up the Atmosphere/Glass_Shower_Per.jpg",
+                caption: "",
+            },
+            {
+                img: "/image/Soak Up the Atmosphere/Section.jpg",
+                caption: "",
+            },
+        ],
+    },
+    {
         id: "concept-c",
         title: "Concept C",
         subtitle: "AI-Powered\nCarbon Evaluation Platform",
         date: "2025",
         time: "Sep. 2025 - Dec. 2025",
         projectType: "Architectural Workflow Prototype",
-        location: "N.A",
-        workType: "Collaborate with Amo Chou, Kelvin Han, and Dorothy He\nTutor: Xun Liu",
+        location: "Vancouver, Canada",
+        workType: "Collaborate with Amo Chou,\nKelvin Han, and Dorothy He\nTutor: Xun Liu",
         description: "Concept C represents a paradigm shift in architectural design workflows, addressing the critical need for carbon accountability in the early design stages. Developed as a collaborative studio project, this AI-powered platform redefines how architects assess and mitigate carbon impact. By integrating real-time carbon evaluation directly into the creative process, Concept C empowers designers to make data-driven decisions that prioritize sustainability without compromising aesthetic or functional integrity. The tool bridges the gap between technical analysis and creative intuition, offering instantaneous feedback on embodied carbon implications as form and material choices evolve.",
         video: "/videos/video.mp4", // Path to your video in public folder
         img: "https://picsum.photos/1200/600/?grayscale",
@@ -189,33 +254,33 @@ const projects = [
             },
             {
                 img: "/image/Concept C/Arch540_Current_Workflow.jpg",
-                caption: "Current Workflow",
+                caption: "",
             },
             {
                 img: "/image/Concept C/Importance_of_Material_Analysis.jpg",
-                caption: "Importance of Material Analysis",
+                caption: "",
             },
             {
                 img: "/image/Concept C/Arch540_Future_Workflow.jpg",
-                caption: "Future Workflow",
+                caption: "",
             },
             {
                 img: "/image/Concept C/Prototype_Workflow_Diagram.png",
-                caption: "Prototype Workflow Diagram",
+                caption: "",
             },
             {
                 img: "/image/Concept C/ARCH540-applogic_3D_architrace.jpg",
-                caption: "ArchiTrace Logic",
+                caption: "",
                 link: "https://architrace-final-431015735923.us-west1.run.app",
             },
             {
                 img: "/image/Concept C/ARCH540-applogic_3D_archidraft.jpg",
-                caption: "Archidraft 3D Logic",
+                caption: "",
                 link: "https://copy-of-archidraft-3d-final-431015735923.us-west1.run.app",
             },
             {
                 img: "/image/Concept C/ARCH540-applogic_archiestimator.png",
-                caption: "ArchiEstimator Logic",
+                caption: "",
                 link: "https://archiestimatoru-final-431015735923.us-west1.run.app",
             },
         ],
@@ -228,7 +293,7 @@ const projects = [
         time: "Jan. 2025 - Apr. 2025",
         projectType: "Architectural Design",
         location: "Vancouver, Canada",
-        workType: "Collaborate with Cheryl Wong\nTutor: Matthieu Grady and Jason Heinrich",
+        workType: "Collaborate with Cheryl Wong\nTutor: Matthieu Grady and\nJason Heinrich",
         description: "Located on Granville Island, 'The Block' acts as a physical and acoustic buffer between the site's louder public zones and quieter working areas. The design employs a solid-and-void strategy where a compact mass absorbs sound while carved voids introduce daylight and circulation. A public-to-private gradient organizes the program: event and maker spaces at the base, ascending to galleries, classrooms, and quiet design studios. Cork is utilized as the primary façade material for its superior acoustic absorption and thermal insulation properties. Integrated with passive strategies like natural ventilation and exposed timber structure, the building creates a resilient, comfortable environment that responds to the sensory dynamics of its industrial context.",
         video: "", 
         img: "/image/Cork/TopImage.jpg",
@@ -720,7 +785,7 @@ const projects = [
         time: "Feb. 2022 - Jun. 2023",
         projectType: "Architectural Design",
         location: "Kowloon Bay, Hong Kong",
-        workType: "Collaborate with Aedas \nEd Lam (Executive Director) \nGeoffrey Hung (Senior Associate) \nPatrick Chan (Architectural Assistant) \nWillis Leung (Architectural Assistant)",
+        workType: "Collaborate with Aedas\nEd Lam (Executive Director)\nGeoffrey Hung (Senior Associate)\nPatrick Chan (Assistant)\nWillis Leung (Assistant)",
         description: "This Alterations and Additions (A&A) project involves major renovation works for Megabox, the largest retail mall in Kowloon East, Hong Kong. In response to new luxurious residential developments in the adjacent Kai Tak district and the evolving demands of young families and couples, the design aims to create a simpler, more elegant, and welcoming atmosphere. Key interventions include re-arranging the atrium voids and relocating entry escalators to improve circulation and arrival experience. A brand new interior style utilizing streamlines, soft lighting, and transparent shopfronts creates a cozy, bright mood. A significant feature is the transformation of the rooftop (17/F-19/F). By demolishing an existing swimming pool and elevated level, the design levels up the outdoor roof to create an iconic sky garden terrace. This new landscape maximizes Victoria Harbour views and integrates indoor-outdoor activities, featuring alfresco dining areas, an artist plaza, event spaces, a four-season garden, and four featured staircases.",
         video: "", 
         img: "/image/Megabox/TopImage.jpg",
@@ -763,7 +828,7 @@ const projects = [
         time: "Oct. 2021 - Feb. 2022",
         projectType: "Feasibility Study",
         location: "Mong Kok, Hong Kong",
-        workType: "Collaborate with Aedas \nGeoffrey Hung (Senior Associate) \nWillis Leung (Architectural Assistant)",
+        workType: "Collaborate with Aedas\nGeoffrey Hung (Senior Associate)\nWillis Leung (Assistant)",
         description: "This Alterations and Additions project for Langham Place, Hong Kong, focuses on refreshing a major local retail mall. The primary challenge involves navigating fire engineering constraints within the spiral retail section, which significantly impacts design possibilities. To improve accessibility for the elderly and people with disabilities, the design proposes replacing most ramps with two new lift connections, ensuring barrier-free access. Due to fire safety regulations preventing structural changes to the void edges, the renovation focuses on upgrading finishes for flooring, walls, and ceilings, as well as redesigning atrium spandrels for a brighter aesthetic. My role also involved designing the L4 large atrium, exhibition installations, the L5 office tower lift lobby, and specific level lift lobbies. The L4 atrium features a 'Forest Park' theme with petal-shaped structures and flower-lighting installations. The L5 office lobby aims for a classic, modern, and grand atmosphere, catering to the medical and lifestyle tenants by creating a VIP experience.",
         video: "", 
         img: "/image/Langham Place/TopImage.jpg",
@@ -806,7 +871,7 @@ const projects = [
         time: "Apr. 2021 - Feb. 2022",
         projectType: "Architectural Design",
         location: "North Lantau, Hong Kong",
-        workType: "Collaborate with ALKF+ \nVenus Wong (Senior Architect) \nKatherine Ng (Architectural Assistant) \nAlice Choy (Architectural Assistant)",
+        workType: "Collaborate with ALKF+\nVenus Wong (Senior Architect)\nKatherine Ng (Assistant)\nAlice Choy (Assistant)",
         description: "This Design and Build project, located in North Lantau, Hong Kong, involves the development of a new central laundry centre, a central food production unit for patient food service, an IT corporate data centre, and a central emergency store for personal protective equipment. The project was awarded on November 24, 2020, with construction beginning in 2021 and an estimated completion date of late 2023. I was responsible for preparing presentation diagrams and building the 3D model for outsourcing rendering within a tight timeframe. The design concept is categorized into three main hierarchical elements: soft, medium, and hard. 'Soft' zones are communal spaces designed to maximize natural daylight. 'Medium' zones serve as working environments that require sufficient natural light without overexposure, utilizing a balanced facade transparency. 'Hard' zones are high-security facilities with minimal facade openings or transparency.",
         video: "", 
         img: "/image/HASSC/TopImage.jpg",
@@ -849,7 +914,7 @@ const projects = [
         time: "Nov. 2019 - Dec. 2019",
         projectType: "Temporary Installation",
         location: "Suzu, Japan",
-        workType: "Collaborate with Atelier Pacific\nHenry Jim (Associate)\nKaren Kwong (Architectural Designer)",
+        workType: "Collaborate with Atelier Pacific\nHenry Jim (Associate)\nKaren Kwong (Designer)",
         description: "Chinese characters (Kanji) serve as a common heritage across East Asia, yet language barriers often limit deep communication despite shared roots. This project, 字駅 Radic-a-tion, explores this connection by deconstructing characters into their radical components. Using traditional Hong Kong iron-smithing and Japanese paper crafts from the Noto Peninsula, we created new, unique 'words'—characters with no pronunciation or defined meaning but recognizable through their radicals. These abstract forms hang within the station, fluttering in the wind and casting evolving shadows, inviting visitors from different cultures to find shared understanding through visual interpretation rather than spoken language.",
         video: "", 
         img: "/image/Radication/TopImage.jpg",

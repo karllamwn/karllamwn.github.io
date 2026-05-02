@@ -1,78 +1,94 @@
 import React from "react";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import Typewriter from "typewriter-effect";
-import { introdata, meta } from "../../content_option";
 import { Link } from "react-router-dom";
-import { About } from "../about";
-import { Portfolio } from "../portfolio";
-import { ContactUs } from "../contact";
+import { introdata, meta, dataportfolio, projects } from "../../content_option";
+
+const projectById = projects.reduce((acc, p) => { acc[p.id] = p; return acc; }, {});
+
+const categoryOf = (p) => {
+  if (!p) return "Academic";
+  const sub = (p.subtitle || "").toLowerCase();
+  const type = (p.projectType || "").toLowerCase();
+  const work = (p.workType || "").toLowerCase();
+  if (sub.includes("competition") || type.includes("competition")) return "Competition";
+  if (work.includes("tutor:") || work.includes("individual work")) return "Academic";
+  if (/aedas|alkf|atelier pacific|sensearchitects/.test(work)) return "Professional";
+  return "Academic";
+};
+
+const tagsFor = (link, fallbackTitle) => {
+  const id = link.replace("/portfolio/", "");
+  const p = projectById[id];
+  if (!p) return fallbackTitle;
+  const city = (p.location || "").split(",")[0].trim();
+  return [categoryOf(p), city, p.date].filter(Boolean).join(" · ").toUpperCase();
+};
+
+const titleFor = (description) => description.replace(/\s*\(\d{4}\)\s*$/, "").toUpperCase();
 
 export const Home = () => {
+  const recent = dataportfolio.slice(0, 5);
+
   return (
     <HelmetProvider>
-      <section id="home" className="home">
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title> {meta.title}</title>
-          <meta name="description" content={meta.description} />
-        </Helmet>
-        <div className="intro_sec d-block d-lg-flex align-items-center ">
-          <div
-            className="h_bg-image order-1 order-lg-2 h-100 "
-            style={{ backgroundImage: `url(${introdata.your_img_url})` }}
-          ></div>
-          <div className="text order-2 order-lg-1 h-100 d-lg-flex justify-content-center">
-            <div className="align-self-center ">
-              <div className="intro mx-auto">
-                <h2 className="mb-1x">{introdata.title}</h2>
-                <h1 className="fluidz-48 mb-1x">
-                  <Typewriter
-                    options={{
-                      strings: [
-                        introdata.animated.first,
-                        introdata.animated.second,
-                        introdata.animated.third,
-                      ],
-                      autoStart: true,
-                      loop: true,
-                      deleteSpeed: 10,
-                    }}
-                  />
-                </h1>
-                <p className="mb-1x">{introdata.description}</p>
-                <div className="intro_btn-action pb-5">
-                  <a href="#portfolio" className="text_2">
-                    <div id="button_p" className="ac_btn btn ">
-                      My Portfolio
-                      <div className="ring one"></div>
-                      <div className="ring two"></div>
-                      <div className="ring three"></div>
-                    </div>
-                  </a>
-                  <a href="#contact">
-                    <div id="button_h" className="ac_btn btn">
-                      Contact Me
-                      <div className="ring one"></div>
-                      <div className="ring two"></div>
-                      <div className="ring three"></div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{meta.title}</title>
+        <meta name="description" content={meta.description} />
+      </Helmet>
+
+      <main className="sheet home-sheet">
+        <div className="section-marker">
+          <span>S 01</span>
+          <span>Statement</span>
         </div>
-      </section>
-      <section id="portfolio" className="portfolio-section">
-        <Portfolio />
-      </section>
-      <section id="about" className="about-section">
-        <About />
-      </section>
-      <section id="contact" className="contact-section">
-        <ContactUs />
-      </section>
+
+        <h1 className="home-title">
+          {introdata.title}
+        </h1>
+
+        <p className="home-description">{introdata.description}</p>
+
+        <div className="divider-stars" aria-hidden>
+          {"* ".repeat(28)}
+        </div>
+
+        <div className="section-marker">
+          <span>S 02</span>
+          <span>Recent Work</span>
+        </div>
+
+        <ol className="recent-list">
+          {recent.map((item, i) => {
+            const num = String(i + 1).padStart(2, "0");
+            return (
+              <li key={item.link} className="recent-item">
+                <Link to={item.link}>
+                  <span className="r-num">[ A{num} ]</span>
+                  <span className="r-title">{titleFor(item.description)}</span>
+                  <span className="r-tags">{tagsFor(item.link, item.description)}</span>
+                  <span className="r-action">[ + ]</span>
+                </Link>
+              </li>
+            );
+          })}
+        </ol>
+
+        <div className="divider-dashes" aria-hidden>
+          {"- ".repeat(28)}
+        </div>
+
+        <div className="leader-row">
+          <span className="label">Total Recent</span>
+          <span className="dots" aria-hidden></span>
+          <Link to="/portfolio" className="value">View All Projects &rarr;</Link>
+        </div>
+
+        <div className="divider-stars" aria-hidden>
+          {"* ".repeat(28)}
+        </div>
+      </main>
     </HelmetProvider>
   );
 };

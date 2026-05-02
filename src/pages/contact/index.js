@@ -1,170 +1,84 @@
-import React, { useState } from "react";
-import * as emailjs from "emailjs-com";
+import React from "react";
 import "./style.css";
-import { Helmet, HelmetProvider } from "react-helmet-async";
-import { meta } from "../../content_option";
-import { Container, Row, Col, Alert } from "react-bootstrap";
-import { contactConfig } from "../../content_option";
+import { contactConfig, socialprofils } from "../../content_option";
+
+const SectionHead = ({ id, label }) => (
+  <>
+    <div className="section-head">
+      <span className="sec-mark">&sect;</span>
+      <span className="sec-id">{id}</span>
+      <span className="sec-em">&mdash;</span>
+      <span className="sec-label">{label}</span>
+    </div>
+    <div className="divider-dashes" aria-hidden>{"- ".repeat(28)}</div>
+  </>
+);
+
+const StarDivider = () => (
+  <div className="divider-stars" aria-hidden>{"* ".repeat(28)}</div>
+);
+
+const DashDivider = () => (
+  <div className="divider-dashes" aria-hidden>{"- ".repeat(28)}</div>
+);
+
+const LeaderRow = ({ label, value, href }) => (
+  <div className="leader-row">
+    <span className="label">{label}</span>
+    <span className="dots" aria-hidden></span>
+    {href ? (
+      <a className="value" href={href} target="_blank" rel="noreferrer">{value}</a>
+    ) : (
+      <span className="value">{value}</span>
+    )}
+  </div>
+);
+
+const year = new Date().getFullYear();
 
 export const ContactUs = () => {
-  const [formData, setFormdata] = useState({
-    email: "",
-    name: "",
-    message: "",
-    loading: false,
-    show: false,
-    alertmessage: "",
-    variant: "",
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFormdata({ loading: true });
-
-    const templateParams = {
-      from_name: formData.email,
-      user_name: formData.name,
-      to_name: contactConfig.YOUR_EMAIL,
-      message: formData.message,
-    };
-
-    emailjs
-      .send(
-        contactConfig.YOUR_SERVICE_ID,
-        contactConfig.YOUR_TEMPLATE_ID,
-        templateParams,
-        contactConfig.YOUR_USER_ID
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          setFormdata({
-            loading: false,
-            alertmessage: "SUCCESS! ,Thankyou for your messege",
-            variant: "success",
-            show: true,
-            email: "",
-            name: "",
-            message: "",
-          });
-        },
-        (error) => {
-          console.log(error.text);
-          setFormdata({
-            alertmessage: `Faild to send!,${error.text}`,
-            variant: "danger",
-            show: true,
-          });
-          document.getElementsByClassName("co_alert")[0].scrollIntoView();
-        }
-      );
-  };
-
-  const handleChange = (e) => {
-    setFormdata({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   return (
-    <HelmetProvider>
-      <Container>
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>{meta.title} | Contact</title>
-          <meta name="description" content={meta.description} />
-        </Helmet>
-        <Row className="mb-5 mt-3 pt-md-3">
-          <Col lg="8">
-            <h1 className="display-4 mb-4">Contact Me</h1>
-            <hr className="t_border my-4 ml-0 text-left" />
-          </Col>
-        </Row>
-        <Row className="sec_sp" style={{ paddingBottom: "100px" }}>
-          <Col lg="12">
-            <Alert
-              //show={formData.show}
-              variant={formData.variant}
-              className={`rounded-0 co_alert ${
-                formData.show ? "d-block" : "d-none"
-              }`}
-              onClose={() => setFormdata({ show: false })}
-              dismissible
-            >
-              <p className="my-0">{formData.alertmessage}</p>
-            </Alert>
-          </Col>
-          <Col lg="5" className="mb-5">
-            <h3 className="color_sec py-4">Get in touch</h3>
-            <address>
-              <strong>Email:</strong>{" "}
-              <a href={`mailto:${contactConfig.YOUR_EMAIL}`}>
-                {contactConfig.YOUR_EMAIL}
-              </a>
-              <br />
-              <br />
-              {contactConfig.hasOwnProperty("YOUR_FONE") ? (
-                <p>
-                  <strong>Phone:</strong> {contactConfig.YOUR_FONE}
-                </p>
-              ) : (
-                ""
-              )}
-            </address>
-            <p>{contactConfig.description}</p>
-          </Col>
-          <Col lg="7" className="d-flex align-items-center">
-            <form onSubmit={handleSubmit} className="contact__form w-100">
-              <Row>
-                <Col lg="6" className="form-group">
-                  <input
-                    className="form-control"
-                    id="name"
-                    name="name"
-                    placeholder="Name"
-                    value={formData.name || ""}
-                    type="text"
-                    required
-                    onChange={handleChange}
-                  />
-                </Col>
-                <Col lg="6" className="form-group">
-                  <input
-                    className="form-control rounded-0"
-                    id="email"
-                    name="email"
-                    placeholder="Email"
-                    type="email"
-                    value={formData.email || ""}
-                    required
-                    onChange={handleChange}
-                  />
-                </Col>
-              </Row>
-              <textarea
-                className="form-control rounded-0"
-                id="message"
-                name="message"
-                placeholder="Message"
-                rows="5"
-                value={formData.message}
-                onChange={handleChange}
-                required
-              ></textarea>
-              <br />
-              <Row>
-                <Col lg="12" className="form-group">
-                  <button className="btn ac_btn" type="submit">
-                    {formData.loading ? "Sending..." : "Send"}
-                  </button>
-                </Col>
-              </Row>
-            </form>
-          </Col>
-        </Row>
-      </Container>
-      <div className={formData.loading ? "loading-bar" : "d-none"}></div>
-    </HelmetProvider>
+    <section id="contact" className="page-section contact-sheet">
+      <SectionHead id="05" label="Contact" />
+
+      <h2 className="contact-headline">
+        Open to full-time roles,<br />
+        collaborations + freelance work.
+      </h2>
+
+      <div className="leader-block contact-rows">
+        <LeaderRow label="Email" value={contactConfig.YOUR_EMAIL} />
+        <LeaderRow label="Phone" value={contactConfig.YOUR_FONE} />
+        <LeaderRow
+          label="LinkedIn"
+          value="lkwn24 →"
+          href={socialprofils.linkedin}
+        />
+        <LeaderRow
+          label="GitHub"
+          value="@karllamwn →"
+          href={socialprofils.github}
+        />
+      </div>
+
+      <DashDivider />
+
+      <StarDivider />
+
+      <div className="contact-barcode">
+        <div className="barcode-bars" aria-hidden></div>
+        <div className="barcode-text">UBC-KARLLAM-{year}-MARCH</div>
+      </div>
+
+      <h3 className="thank-you">Thank You for Visiting</h3>
+
+      <div className="contact-copyright">
+        &copy; {year} KARL LAM &mdash; ALL RIGHTS RESERVED
+      </div>
+
+      <DashDivider />
+
+      <div className="contact-footer-bars" aria-hidden></div>
+    </section>
   );
 };

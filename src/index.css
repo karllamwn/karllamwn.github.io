@@ -1,21 +1,17 @@
 :root {
-    --bg-color: #1C1F26;
-    --primary-color: #1C1F26;
-    --secondary-color: #E0E6ED;
-    --text-color: #E0E6ED;
-    --text-color-2: #E0E6ED;
-    --text-color-3: #AABBC3;
-    --overlay-color: rgb(28 31 38 / 90%);
-}
+    --paper: #f4f1ea;
+    --paper-2: #ece8df;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-faint: #9a9a9a;
+    --rule: rgba(26, 26, 26, 0.18);
+    --rule-faint: rgba(26, 26, 26, 0.08);
 
-[data-theme="light"] {
-    --bg-color: #F5F7FA;
-    --primary-color: #F5F7FA;
-    --secondary-color: #1C1F26;
-    --text-color: #1C1F26;
-    --text-color-2: #1C1F26;
-    --text-color-3: #5E6E7D;
-    --overlay-color: rgb(245 247 250 / 90%);
+    --font-display: "Doto", "Hina Mincho", "Klee One", "VT323", "Courier New", monospace;
+    --font-mono: "Share Tech Mono", "Hina Mincho", "Klee One", "Courier New", monospace;
+
+    --col-narrow: 640px;
+    --col-wide: 880px;
 }
 
 html,
@@ -26,97 +22,322 @@ body {
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    cursor: default;
 }
 
-::-webkit-scrollbar {
-    display: none;
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background: var(--ink);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    will-change: transform;
 }
 
-body.modal-open {
-    padding-right: 0 !important;
-}
-
-body.menu-open {
-    overflow: hidden;
-    padding-right: 0 !important;
+@media (pointer: coarse), (hover: none) {
+    .cursor-dot {
+        display: none;
+    }
 }
 
 body {
     margin: 0;
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: visible;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: 'Times New Roman', Times, serif;
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    padding-top: 60px;
-    border-left: 10px solid var(--primary-color);
-    border-right: 10px solid var(--primary-color);
+    font-synthesis: none;
+    -webkit-font-synthesis: none;
+    padding-top: 0;
+
+    background-image:
+        radial-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+        radial-gradient(rgba(0, 0, 0, 0.018) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1px 2px;
+}
+
+body.menu-open {
+    overflow: hidden;
 }
 
 ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
     font-weight: 700;
+    letter-spacing: 0.04em;
+    margin: 0;
+    line-height: 1.05;
+    text-transform: uppercase;
 }
 
-a,
+a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 120ms ease, color 120ms ease;
+}
+
 a:hover {
-    color: var(--text-color);
+    color: var(--ink);
+    border-bottom-color: var(--ink);
 }
 
 p {
+    margin: 0 0 1em 0;
     word-break: break-word;
-    -webkit-hyphens: none;
-    -moz-hyphens: none;
-    -ms-hyphens: none;
-    hyphens: none;
 }
 
-.ovhidden {
+p:last-child {
+    margin-bottom: 0;
+}
+
+::selection {
+    background: var(--ink);
+    color: var(--paper);
+}
+
+/* receipt scaffolding ------------------------------------------------- */
+
+.sheet {
+    max-width: var(--col-wide);
+    margin: 0 auto;
+    padding: 32px 32px 32px;
+    position: relative;
+}
+
+.single-page {
+    padding-top: 8px;
+}
+
+@media (max-width: 540px) {
+    .sheet {
+        padding: 20px 20px 20px;
+    }
+    .site-header .sheet {
+        padding-bottom: 4px;
+    }
+    .single-page {
+        padding-top: 0;
+    }
+    .section-head {
+        margin-top: 6px;
+    }
+}
+
+.sheet--narrow {
+    max-width: var(--col-narrow);
+}
+
+.eyebrow {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 11px;
+    color: var(--ink-soft);
+    padding-bottom: 12px;
+    border-top: 1px solid var(--ink);
+    padding-top: 12px;
+}
+
+.eyebrow .label {
+    margin-right: auto;
+}
+
+.eyebrow .right {
+    margin-left: auto;
+}
+
+.section-marker {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin: 28px 0 10px;
+}
+
+/* single-line section head: § 01 — Label */
+.section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 12px;
+    color: var(--ink);
+    margin: 12px 0 6px;
+}
+
+.section-head .sec-mark {
+    color: var(--ink);
+    font-size: 14px;
+}
+
+.section-head .sec-id {
+    color: var(--ink-soft);
+    letter-spacing: 0.16em;
+}
+
+.section-head .sec-em {
+    color: var(--ink-faint);
+}
+
+.section-head .sec-label {
+    color: var(--ink);
+}
+
+/* CJK characters: render in light Hina Mincho regardless of parent weight */
+.cjk {
+    font-family: "Hina Mincho", "Klee One", serif;
+    font-weight: 400;
+    letter-spacing: 0;
+    margin-right: 0.15em;
+}
+
+/* SepList: each item is a flex child with a leading " · ". Flex (instead
+   of inline) prevents adjacent items from merging when wrapped, and
+   justify-content: flex-end right-aligns each line. */
+.value-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    column-gap: 0;
+    row-gap: 0;
+}
+
+.value-item {
+    white-space: nowrap;
+}
+
+
+.page-section {
+    padding-top: 18px;
+}
+
+.page-section:first-of-type {
+    padding-top: 0;
+}
+
+.divider-stars {
+    color: var(--ink-soft);
+    letter-spacing: 0.5em;
+    text-align: left;
+    font-size: 11px;
+    margin: 18px 0;
+    user-select: none;
     overflow: hidden;
+    white-space: nowrap;
 }
 
-.text_2,
-.text_2:hover {
-    color: var(--text-color-2);
+.divider-dashes {
+    color: var(--ink-soft);
+    letter-spacing: 0.4em;
+    text-align: left;
+    font-size: 11px;
+    margin: 12px 0;
+    user-select: none;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+/* dotted leader rows: <span>label</span><span>value</span> */
+.leader-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 12px;
+    line-height: 1.9;
+    padding: 6px 0;
 }
 
-.cursor__dot div {
-    z-index: 999999 !important;
+@media (max-width: 540px) {
+    .leader-row {
+        gap: 8px;
+        letter-spacing: 0.04em;
+    }
+    .leader-row .dots {
+        min-width: 16px;
+    }
 }
 
-.cursor__dot div:last-child {
-    background-color: var(--text-color-3) !important;
+.leader-row .label {
+    color: var(--ink);
+    flex-shrink: 0;
+    font-weight: 700;
 }
 
-.cursor__dot div:first-child {
-    filter: invert(1);
-    background-color: var(--overlay-color) !important;
+.leader-row .dots {
+    flex: 1 1 auto;
+    min-width: 24px;
 }
 
-.color_pr {
-    color: var(--primary-color) !important;
+.leader-row .value {
+    color: var(--ink);
+    text-align: right;
+    flex-shrink: 1;
+    min-width: 0;
+    overflow-wrap: break-word;
+    font-weight: 400;
 }
 
-.color_sec {
-    color: var(--secondary-color);
+
+
+
+.leader-row a.value {
+    border-bottom: 1px solid transparent;
+}
+
+.leader-row a.value:hover {
+    border-bottom-color: var(--ink);
+}
+
+/* page transition ----------------------------------------------------- */
+.page-enter {
+    opacity: 0;
+}
+
+.page-enter-active {
+    opacity: 1;
+    transition: opacity 250ms ease-in-out;
+}
+
+.page-exit {
+    opacity: 1;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.page-exit-active {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    transition: opacity 250ms ease-in-out;
 }
 
 .s_c {

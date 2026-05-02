@@ -1,121 +1,94 @@
 import React from "react";
 import "./style.css";
-import { Helmet, HelmetProvider } from "react-helmet-async";
-import { Container, Row, Col } from "react-bootstrap";
 import {
   dataabout,
-  meta,
   worktimeline,
-  skills,
-  services,
-  education,
 } from "../../content_option";
 
-export const About = () => {
-  return (
-    <HelmetProvider>
-      <Container className="About-header">
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title> About | {meta.title}</title>
-          <meta name="description" content={meta.description} />
-        </Helmet>
-        <Row className="mb-5 mt-3 pt-md-3">
-          <Col lg="8">
-            <h1 className="display-4 mb-4">About me</h1>
-            <hr className="t_border my-4 ml-0 text-left" />
-          </Col>
-        </Row>
-        <Row className="sec_sp">
-          <Col lg="5">
-            <h3 className="color_sec py-4">{dataabout.title}</h3>
-          </Col>
-          <Col lg="7" className="d-flex align-items-center">
-            <div>
-              <p>{dataabout.aboutme}</p>
-            </div>
-          </Col>
-        </Row>
-        <Row className="sec_sp">
-          <Col lg="5">
-            <h3 className="color_sec py-4">Education</h3>
-          </Col>
-          <Col lg="7">
-            <table className="table caption-top">
-              <tbody>
-                {education.map((data, i) => {
-                  return (
-                    <tr key={i} style={{ verticalAlign: "middle" }}>
-                      <th scope="row" style={{ whiteSpace: "pre-line" }}>{data.title}</th>
-                      <td>{data.where}</td>
-                      <td>{data.date}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </Col>
-        </Row>
-        <Row className=" sec_sp">
-          <Col lg="5">
-            <h3 className="color_sec py-4">Work Timline</h3>
-          </Col>
-          <Col lg="7">
-            <table className="table caption-top">
-              <tbody>
-                {worktimeline.map((data, i) => {
-                  return (
-                    <tr key={i}>
-                      <th scope="row">{data.jobtitle}</th>
-                      <td>{data.where}</td>
-                      <td>{data.date}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </Col>
-        </Row>
-        <Row className="sec_sp">
-          <Col lg="5">
-            <h3 className="color_sec py-4">Skills</h3>
-          </Col>
-          <Col lg="7">
-            {skills.map((data, i) => {
-              return (
-                <div key={i}>
-                  <h3 className="progress-title">{data.name}</h3>
-                  <div className="progress">
-                    <div
-                      className="progress-bar"
-                      style={{
-                        width: `${data.value}%`,
-                      }}
-                    >
-                      <div className="progress-value">{data.value}%</div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </Col>
-        </Row>
-        <Row className="sec_sp">
-          <Col lang="5">
-            <h3 className="color_sec py-4">Expertise</h3>
-          </Col>
-          <Col lg="7">
-            {services.map((data, i) => {
-              return (
-                <div className="service_ py-4" key={i}>
-                  <h5 className="service__title">{data.title}</h5>
-                  <p className="service_desc">{data.description}</p>
-                </div>
-              );
-            })}
-          </Col>
-        </Row>
-      </Container>
-    </HelmetProvider>
-  );
-};
+// Renders items as flex children with leading " · " separators. Flex layout
+// prevents adjacent items from merging on wrap, and justify-content:flex-end
+// right-aligns each line.
+const SepList = ({ items }) => (
+  <span className="value-list">
+    {items.map((item, i) => (
+      <span key={i} className="value-item">
+        {i > 0 && <span className="value-sep" aria-hidden>{" · "}</span>}
+        {item}
+      </span>
+    ))}
+  </span>
+);
+
+const LeaderRow = ({ label, value, href }) => (
+  <div className="leader-row">
+    <span className="label">{label}</span>
+    <span className="dots" aria-hidden></span>
+    {href ? (
+      <a className="value" href={href} target="_blank" rel="noreferrer">{value}</a>
+    ) : (
+      <span className="value">{value}</span>
+    )}
+  </div>
+);
+
+const SectionHead = ({ id, label }) => (
+  <>
+    <div className="section-head">
+      <span className="sec-mark">&sect;</span>
+      <span className="sec-id">{id}</span>
+      <span className="sec-em">&mdash;</span>
+      <span className="sec-label">{label}</span>
+    </div>
+    <div className="divider-dashes" aria-hidden>{"- ".repeat(28)}</div>
+  </>
+);
+
+const StarDivider = () => (
+  <div className="divider-stars" aria-hidden>{"* ".repeat(28)}</div>
+);
+
+const primarySkills = ["AI Workflow", "Rhino", "Grasshopper", "Revit", "Adobe Suite"];
+const secondarySkills = ["AutoCAD", "SketchUp", "Enscape", "V‑ray", "Premiere Pro"];
+
+const experienceFirmsList = worktimeline
+  .map((w) => w.where.replace(/\s*\([^)]*\)\s*$/, "").trim())
+  .filter((firm) => !/sensearchitects/i.test(firm));
+// Internal spaces → NBSP so each firm name stays together on one line.
+const experienceFirms = experienceFirmsList
+  .map((firm) => firm.replace(/ /g, " "))
+  .join(" · ");
+
+export const About = () => (
+  <section id="about" className="page-section about-sheet">
+    <SectionHead id="01" label="About" />
+
+    <div className="about-intro">
+      <div className="about-photo-block">
+        <img
+          className="about-avatar"
+          src={`${process.env.PUBLIC_URL}/image/Profile/me_avatar.png`}
+          alt="Karl Lam pixel-art avatar"
+        />
+      </div>
+      <div className="about-intro-content">
+        <h1 className="about-name-title">Karl Lam</h1>
+        <p className="about-bio">{dataabout.aboutme}</p>
+
+        <div className="leader-block about-profile">
+          <LeaderRow label="Master" value="UBC SALA, Vancouver" />
+          <LeaderRow label="Bachelor" value="NCL SAPL, Newcastle" />
+          <LeaderRow label="Skills" value={<SepList items={primarySkills} />} />
+          <LeaderRow label="Also" value={<SepList items={secondarySkills} />} />
+          {experienceFirmsList.length > 0 && (
+            <LeaderRow
+              label="Experience"
+              value={<SepList items={experienceFirmsList.map((f) => f.replace(/ /g, " "))} />}
+            />
+          )}
+        </div>
+      </div>
+    </div>
+
+    <StarDivider />
+  </section>
+);
