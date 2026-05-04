@@ -325,6 +325,29 @@ p:last-child {
     font-weight: 400;
 }
 
+a.leader-row {
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+a.leader-row:hover {
+    border: none;
+}
+
+a.leader-row:hover .value,
+a.leader-row:hover .label {
+    color: var(--ink);
+}
+
+a.leader-row .value {
+    transition: letter-spacing 200ms ease;
+}
+
+a.leader-row:hover .value {
+    letter-spacing: 0.18em;
+}
+
 
 
 

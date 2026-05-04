@@ -17,7 +17,7 @@ const introdata = {
 
 const dataabout = {
     title: "A bit about myself",
-    aboutme: "Master of Architecture graduate from UBC SALA (2026), with 3 years of practice experience in Hong Kong across Aedas, ALKF+, and Atelier Pacific, working on large-scale retail, healthcare, and alteration-and-addition projects. UK-trained at Newcastle (BA in Architecture and Urban Planning), bringing a cross-cultural perspective shaped by Asia and North America. Currently focused on AI-augmented design workflows and computational tools, combining commercial delivery experience with a careful, collaborative approach to early-stage design.",
+    aboutme: "Master of Architecture graduate from UBC SALA (2026), with 3 years of practice experience across Aedas, ALKF+, and Atelier Pacific in Hong Kong, delivering large-scale retail, healthcare, and alteration-and-addition projects. UK-trained at Newcastle (BA in Architecture and Urban Planning), bringing a cross-cultural perspective shaped by Asia and North America. Currently, I am focused on integrating AI-augmented design workflows to optimize early-stage design for commercial delivery with a thoughtful and collaborative approach.",
 };
 const education = [    {
         title: "Master of Architecture",
@@ -946,7 +946,7 @@ const projects = [
 
 const contactConfig = {
     YOUR_EMAIL: "karllamwn@gmail.com",
-    YOUR_FONE: "(1)672-673-7026",
+    YOUR_FONE: "+1 672 673 7036",
     description: "I am eager to contribute my experience in an intern architect, co-op, or architectural assistant role. Feel free to contact me for collaborations.",
     // creat an emailjs.com account 
     // check out this tutorial https://www.emailjs.com/docs/examples/reactjs/

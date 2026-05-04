@@ -47,8 +47,16 @@ export const ContactUs = () => {
       </h2>
 
       <div className="leader-block contact-rows">
-        <LeaderRow label="Email" value={contactConfig.YOUR_EMAIL} />
-        <LeaderRow label="Phone" value={contactConfig.YOUR_FONE} />
+        <a className="leader-row leader-row--link" href={`mailto:${contactConfig.YOUR_EMAIL}`}>
+          <span className="label">Email</span>
+          <span className="dots" aria-hidden></span>
+          <span className="value">Click to send →</span>
+        </a>
+        <a className="leader-row leader-row--link" href={`tel:${contactConfig.YOUR_FONE.replace(/\s+/g, "")}`}>
+          <span className="label">Phone</span>
+          <span className="dots" aria-hidden></span>
+          <span className="value">Click to call →</span>
+        </a>
         <LeaderRow
           label="LinkedIn"
           value="lkwn24 →"
